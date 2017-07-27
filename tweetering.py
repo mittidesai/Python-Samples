@@ -3,11 +3,12 @@
 from __future__ import print_function
 import sys
 import tweepy
+from tweepy import OAuthHandler
 from ConfigParser import ConfigParser
 import json
 
 #Assigning max_tweets to 100 if argument not given
-max_tweets = 100
+max_tweets = 2500
 
 if(len(sys.argv)==3):
     max_tweets = int(sys.argv[2])
@@ -49,16 +50,27 @@ def get_config():
     return conf
 
 def get_stream():
-    config = get_config()
-    auth = tweepy.OAuthHandler(config.get('twitter', 'consumer_key'),
-                               config.get('twitter', 'consumer_secret'))
 
-    auth.set_access_token(config.get('twitter', 'access_token'),
-                          config.get('twitter', 'access_token_secret'))
-
-    listener = TwitterListener()
-    stream = tweepy.Stream(auth=auth, listener=listener)
-    return stream
+     # keys and tokens from the Twitter Dev Console
+        access_token = '334700312-RbFnOySH2X103PiHyS7nbhDcqHIoj6luBSfiw5dx'
+        access_token_secret = 'lcevOHD2IAZ3goXkr3DnIZHmLnMfKFAsuGjLDh969fSq5'
+        consumer_key = '9fe8nBe9TiLFMYkchZrsPR1Ek'
+        consumer_secret = 'mhh1v5Z7jKGlVFy4RM93FovnFe0CCdFp8M3CseWJ1BDtoo8x0H'
+ 
+        # attempt authentication
+        
+            # create OAuthHandler object
+            
+       
+        config = get_config()
+        auth = OAuthHandler(consumer_key, consumer_secret)
+            # set access token and secret
+        auth.set_access_token(access_token, access_token_secret)
+            # create tweepy API object to fetch tweets
+        api = tweepy.API(auth)
+        listener = TwitterListener()
+        stream = tweepy.Stream(auth=auth, listener=listener)
+        return stream
 
 if __name__ == "__main__":
     if len(sys.argv) == 1:

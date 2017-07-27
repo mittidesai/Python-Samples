@@ -1,0 +1,39 @@
+[DEFAULT]
+logfile = ./logs/<application-name>
+loglevel = DEBUG
+
+[REDDIT]
+consumer_key =
+consumer_secret =
+access_token =
+access_token_secret =
+
+[twitter]
+consumer_key = '9fe8nBe9TiLFMYkchZrsPR1Ek'
+consumer_secret = 'mhh1v5Z7jKGlVFy4RM93FovnFe0CCdFp8M3CseWJ1BDtoo8x0H'
+access_token = '334700312-RbFnOySH2X103PiHyS7nbhDcqHIoj6luBSfiw5dx'
+access_token_secret = 'lcevOHD2IAZ3goXkr3DnIZHmLnMfKFAsuGjLDh969fSq5'
+
+[loggers]
+keys=root
+
+[handlers]
+keys=hand01
+
+[formatters]
+keys=form01
+
+[logger_root]
+level=NOTSET
+handlers=hand01
+
+[handler_hand01]
+class=FileHandler
+level=%(loglevel)s
+formatter=form01
+args=('%(logfile)s', 'w')
+
+[formatter_form01]
+format=F1 %(asctime)s %(levelname)s %(message)s
+datefmt=
+class=logging.Formatter
