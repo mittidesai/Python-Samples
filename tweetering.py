@@ -8,7 +8,7 @@ from ConfigParser import ConfigParser
 import json
 
 #Assigning max_tweets to 100 if argument not given
-max_tweets = 2500
+max_tweets = 250
 
 if(len(sys.argv)==3):
     max_tweets = int(sys.argv[2])
@@ -23,7 +23,7 @@ class TwitterListener(tweepy.StreamListener):
         self.num_tweets += 1
         if(self.num_tweets <= max_tweets):
             s = (tweet.text + '\n').encode('UTF-8')
-            f = open('clinton.txt', 'a')
+            f = open('trump.txt', 'a')
             f.write(s)
             #print (s)
             f.close()
